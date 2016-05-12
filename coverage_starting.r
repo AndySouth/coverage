@@ -4,8 +4,12 @@
 
 #first go at creating some coverage visualisations
 
-#git remote add origin https://github.com/AndySouth/coverage.git
+#git remote add origin git@github.com:AndySouth/coverage.git
+#but because i set to wrong one first
+#git remote set-url origin git@github.com:AndySouth/coverage.git
+#git pull origin master
 #git push -u origin master
+
 
 
 dfv <- data.frame(
@@ -39,6 +43,7 @@ rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=d
 #image <- as.raster(matrix(0:1, ncol = 5, nrow = 3))
 #rasterImage(image, xleft=0.1, ybottom=0.1, xright=0.2, ytop=0.2, interpolate = FALSE)
 
+library(png) #for readPNG
 img_cow <- readPNG('cow_thumb.png')
 rasterImage(img_cow, xleft=-0.25, ybottom=dfv$cow/2-0.05, xright=-0.15, ytop=dfv$cow/2+0.05, interpolate = FALSE)
 
