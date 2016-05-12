@@ -13,7 +13,7 @@ shinyUI(fluidPage(
   h4("Change inputs below to see the implications."),
 
   fluidRow(
-    column(6, plotOutput('plotDefault'))
+    column(8, plotOutput('plot_feed'))
     #column(6, plotOutput('plot'))
   ), #end fluid row
 
@@ -40,7 +40,7 @@ shinyUI(fluidPage(
 
   ), #end fluid row
   fluidRow(
-    column(4, hr()),
-    column(2, actionButton('aButtonRun', 'Run Model'))
+    column(4, hr())
+    #column(2, actionButton('aButtonRun', 'Run Model'))
   ) #end fluid row
 ))

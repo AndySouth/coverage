@@ -4,9 +4,9 @@
 library(shiny)
 #install_github('AndySouth/coverage')
 library(coverage)
+library(png)
 
-
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
 
   output$plot_feed <- renderPlot({
@@ -24,13 +24,17 @@ shinyServer(function(input, output) {
                       indoor = input$feed_in,
                       outdoor = input$feed_out )
 
-        #a hack to output the inputs
-        # cat("runcurtis_f2( max_gen=500",
-        #               "P_1 =",input$P_1,",",
-        #               ")\n" )
 
       #}) #end isolate
     #} #end if ( input$aButtonRun > 0 )
   })
+
+
+  #to update values based on changes in others
+  observe({ updateNumericInput(session, "feed_man", value = 1-input$feed_cow) })
+  observe({ updateNumericInput(session, "feed_cow", value = 1-input$feed_man) })
+  observe({ updateNumericInput(session, "feed_in", value = 1-input$feed_out) })
+  observe({ updateNumericInput(session, "feed_out", value = 1-input$feed_in) })
+
 
 })
