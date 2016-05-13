@@ -41,32 +41,30 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
 
   #plot pie
-  pie(c(cow, man-indoor, indoor), col=df$z, labels=NA, main="Vector feeding", radius=1)
+  #pie(c(cow, man-indoor, indoor), col=df$z, labels=NA, main="Vector feeding", radius=1)
 
-
-  #create dataframe for intervention vis - trickier
-  #may need multiple polygons
-  #or should I first just allow bed nets & vet insecticide
+  #including intervention
   if (intervention == 'bed nets')
   {
-    ymin <- outdoor+((1-coverage)*indoor)
-    ymax <- 1
+    #add intervention to end (man indoors)
+    pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="Vector feeding", radius=1)
   } else if (intervention == 'vet insecticide')
   {
-    ymin <- 0
-    ymax <- cow*coverage
+    #add intervention to start (cow)
+    pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="Vector feeding", radius=1)
   }
 
-  df_int <- data.frame(
-    xmin = 0,
-    xmax = 1,
-    ymin = ymin,
-    ymax = ymax
-  )
 
-  #add intervention polygon on top
-  #to do I could also add to the side ?
-  #rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col="white")
+  #this works to add the intervention as a blank, but isn't the way gerry does
+  # if (intervention == 'bed nets')
+  # {
+  #   #add intervention to end (man indoors), see col too
+  #   pie(c(cow, man-indoor, 1-(indoor*coverage), indoor*coverage), col=c(df$z,rgb(1,1,1,0.9)), labels=NA, main="Vector feeding", radius=1)
+  # } else if (intervention == 'vet insecticide')
+  # {
+  #   #add intervention to start (cow)
+  #   pie(c(cow*coverage, 1-(cow*coverage), man-indoor, indoor), col=c(rgb(1,1,1,0.9),df$z), labels=NA, main="Vector feeding", radius=1)
+  # }
 
 
 
