@@ -26,6 +26,13 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     outdoor = 0.7
   }
 
+  #add a check for if indoor>man
+  if (indoor > man)
+  {
+    warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
+    return()
+  }
+
 
   #create dataframe for feeding vis
   df <- data.frame(
