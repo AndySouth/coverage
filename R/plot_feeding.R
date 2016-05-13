@@ -49,7 +49,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
   #create blank plot
   #can cahnge extents here to allow in more or less things in borders
-  plot(c(-0.2,1.25),c(0,1), type='n', axes=FALSE, xlab='', ylab='')
+  plot(c(-0.2,1.25),c(0,1), type='n', axes=FALSE, xlab='', ylab='', asp=1)
 
   #add feeding rectangles
   rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=df$z)
