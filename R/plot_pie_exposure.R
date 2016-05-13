@@ -32,6 +32,13 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
     return()
   }
+  if (man-indoor==0 & indoor-(indoor*coverage)==0)
+  {
+    warning("no human exposure, exiting plot")
+    return()
+  }
+
+
 
   #create dataframe for feeding vis
   df <- data.frame(
