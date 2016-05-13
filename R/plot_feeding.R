@@ -6,12 +6,16 @@
 #' @param cow
 #' @param indoor
 #' @param outdoor
+#' @param intervention one of 'bed nets', 'vet insecticide'
+#' @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
 #'
 #' @return dataframe of some plot coords
 #' @export
 
-plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL ){
-
+plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
+                          intervention='bed nets', coverage=0.8 )
+                          #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
+{
 
   #set some defaults
   if (is.null(man) & is.null(cow) & is.null(indoor) & is.null(outdoor) )
@@ -30,7 +34,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL ){
     # outdoor = 0.7
   # )
 
-
+  #create dataframe for feeding vis
   df <- data.frame(
     xmin = rep(0,3),
     xmax = rep(1,3),
@@ -45,7 +49,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL ){
   #create blank plopt
   plot(c(-0.2,1.3),c(0,1), type='n', axes=FALSE, xlab='', ylab='')
 
-  #add rectangles
+  #add feeding rectangles
   rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=df$z)
 
 
@@ -66,6 +70,38 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL ){
   #axes after images to overwrite any whitespace
   axis(2, at=c(0, cow, 1), labels=FALSE, lwd=3, pos = -0.1)
   axis(4, at= c(0, outdoor, 1), labels=FALSE, lwd=3, pos = 1.1)
+
+
+  ################
+  ## interventions
+  cat("intervention=",intervention,"\n")
+
+
+  #create dataframe for intervention vis - trickier
+  #may need multiple polygons
+  #or should I first just allow bed nets & vet insecticide
+  if (intervention == 'bed nets')
+  {
+    ymin <- outdoor+((1-coverage)*indoor)
+    ymax <- 1
+  } else if (intervention == 'vet insecticide')
+  {
+    ymin <- 0
+    ymax <- cow*coverage
+  }
+
+  df_int <- data.frame(
+    xmin = 0,
+    xmax = 1,
+    ymin = ymin,
+    ymax = ymax
+  )
+
+  #add intervention polygon on top
+  #to do I could also add to the side ?
+  rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col="white")
+
+
 
   #return plot coords in case needed
   invisible(df)
