@@ -64,10 +64,10 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, cow + man/2+0.05, interpolate = FALSE)
 
   img_indoor <- readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
-  rasterImage(img_in, xleft=1.1, ybottom=outdoor+indoor/2-0.1, xright=1.3, outdoor+indoor/2+0.1, interpolate = FALSE)
+  rasterImage(img_indoor, xleft=1.1, ybottom=outdoor+indoor/2-0.1, xright=1.3, outdoor+indoor/2+0.1, interpolate = FALSE)
 
   img_outdoor <- readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
-  rasterImage(img_out, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
+  rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
 
   #axes after images to overwrite any whitespace
   axis(2, at=c(0, cow, 1), labels=FALSE, lwd=3, pos = -0.1)
