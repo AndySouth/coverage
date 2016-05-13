@@ -47,8 +47,9 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #remove blank borders
   par(mar = c(0,0,0,0),oma = c(0, 0, 0, 0))
 
-  #create blank plopt
-  plot(c(-0.2,1.3),c(0,1), type='n', axes=FALSE, xlab='', ylab='')
+  #create blank plot
+  #can cahnge extents here to allow in more or less things in borders
+  plot(c(-0.2,1.2),c(0,1), type='n', axes=FALSE, xlab='', ylab='')
 
   #add feeding rectangles
   rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=df$z)
@@ -75,7 +76,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
   ################
   ## interventions
-  cat("intervention=",intervention,"\n")
+  #cat("intervention=",intervention,"\n")
 
 
   #create dataframe for intervention vis - trickier
@@ -100,7 +101,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
   #add intervention polygon on top
   #to do I could also add to the side ?
-  rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col="white")
+  rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col=rgb(1,1,1,0.9))
 
 
 
