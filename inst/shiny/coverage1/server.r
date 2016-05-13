@@ -44,6 +44,19 @@ shinyServer(function(input, output, session) {
   })
 
 
+  ####################################
+  output$plot_pie_exposure <- renderPlot({
+
+
+    plot_pie_feeding( man = input$feed_man,
+                      cow = 1-input$feed_man,
+                      indoor = input$feed_in,
+                      outdoor = 1-input$feed_in,
+                      intervention = input$intervention,
+                      coverage = input$target_coverage )
+  })
+
+
   #to update values based on changes in others
   # observe({ updateNumericInput(session, "feed_man", value = 1-input$feed_cow) })
   # observe({ updateNumericInput(session, "feed_cow", value = 1-input$feed_man) })
