@@ -13,8 +13,8 @@ shinyUI(fluidPage(
   h4("Change inputs below to see the implications."),
 
   fluidRow(
-    column(8, plotOutput('plot_feed'))
-    #column(6, plotOutput('plot'))
+    column(8, plotOutput('plot_feed')),
+    column(2, plotOutput('plot_pie_feed'))
   ), #end fluid row
 
   hr(),

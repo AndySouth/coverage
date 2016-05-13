@@ -9,6 +9,7 @@ library(png)
 shinyServer(function(input, output, session) {
 
 
+  ################################
   output$plot_feed <- renderPlot({
 
     #add dependency on the button
@@ -16,8 +17,6 @@ shinyServer(function(input, output, session) {
     #{
       #isolate reactivity of other objects
     #  isolate({
-
-        #cat("running resistSimple with these inputs:", input$P_1, input$P_2*input$P_1, input$h.RS1_00, input$h.RS2_00,"\n")
 
         plot_feeding( man = input$feed_man,
                       cow = 1-input$feed_man,
@@ -29,6 +28,19 @@ shinyServer(function(input, output, session) {
 
       #}) #end isolate
     #} #end if ( input$aButtonRun > 0 )
+  })
+
+
+  ####################################
+  output$plot_pie_feed <- renderPlot({
+
+
+    plot_pie_feeding( man = input$feed_man,
+                  cow = 1-input$feed_man,
+                  indoor = input$feed_in,
+                  outdoor = 1-input$feed_in,
+                  intervention = input$intervention,
+                  coverage = input$target_coverage )
   })
 
 

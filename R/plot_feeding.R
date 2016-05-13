@@ -39,7 +39,8 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     xmin = rep(0,3),
     xmax = rep(1,3),
     ymin = c(0, cow, outdoor),
-    ymax = c(cow, outdoor,1), z=c(1:3)
+    ymax = c(cow, outdoor,1),
+    z = c(1:3)
   )
 
 
