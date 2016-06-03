@@ -58,12 +58,12 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   if (intervention == 'bed nets')
   {
     #add intervention to end (man indoors)
-    pie(c(man-indoor, indoor-(indoor*coverage)), col=c(df$z[2:3]), labels=NA, main="Human exposure", radius=1)
+    pie(c(man-indoor, indoor-(indoor*coverage)), col=c(df$z[2:3]), labels=NA, main="", radius=1)
 
   } else if (intervention == 'vet insecticide')
   {
     #add intervention to start (cow)
-    pie(c(man-indoor, indoor), col=c(df$z[2:3]), labels=NA, main="Human exposure", radius=1)
+    pie(c(man-indoor, indoor), col=c(df$z[2:3]), labels=NA, main="", radius=1)
   }
 
 

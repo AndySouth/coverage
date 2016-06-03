@@ -54,11 +54,11 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   if (intervention == 'bed nets')
   {
     #add intervention to end (man indoors)
-    pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="Vector feeding", radius=1)
+    pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="", radius=1)
   } else if (intervention == 'vet insecticide')
   {
     #add intervention to start (cow)
-    pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="Vector feeding", radius=1)
+    pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="", radius=1)
   }
 
 
