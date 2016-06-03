@@ -46,29 +46,14 @@ shinyUI(fluidPage(
   h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
   h5("Change inputs below to see implications."),
 
-  # fluidRow(
-  #   column(8, plotOutput('plot_feed')),
-  #   # column(2, h5("Vector feeding"), plotOutput('plot_pie_feed') ),
-  #   # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
-  #   column(2, plotOutput('plot_pie_feed') ),
-  #   column(2, plotOutput('plot_pie_expose') )
-  # ), #end fluid row
-
   fluidRow(
-    column(12, plotOutput('plot_feed'))
+    column(8, plotOutput('plot_feed')),
+    # column(2, h5("Vector feeding"), plotOutput('plot_pie_feed') ),
+    # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
+    column(2, plotOutput('plot_pie_feed') ),
+    column(2, plotOutput('plot_pie_expose') )
   ), #end fluid row
 
-  fluidRow(
-    column(2,NULL),
-
-    #column(4, plotOutput('plot_pie_feed') ),
-    #column(4, plotOutput('plot_pie_expose') )
-
-    column(4, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_feed'), HTML("</div>")),
-    column(4, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_expose'), HTML("</div>"))
-
-    #column(4, plotOutput('plot_pie_expose') )
-  ), #end fluid row
 
   #hr(),
 
