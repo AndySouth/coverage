@@ -1,7 +1,10 @@
 #coverage/inst/shiny/coverage1/server.r
 #andy south 12/5/16
 
+#https://andysouth.shinyapps.io/coverage1/
+
 library(shiny)
+#library(devtools)
 #install_github('AndySouth/coverage')
 library(coverage)
 library(png)
