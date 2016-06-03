@@ -1,4 +1,4 @@
-#coverage/inst/shiny/coverage1/ui.r
+#coverage/inst/shiny/covmob1/ui.r
 #andy south 12/5/16
 
 library(shiny)
