@@ -35,8 +35,8 @@ shinyServer(function(input, output, session) {
 
 
   ####################################
-  output$plot_pie_feed <- renderPlot({
-
+  #output$plot_pie_feed <- renderPlot(width = 150, height = 150,{
+  output$plot_pie_feed <- renderPlot(width = 150, height = 150,{
 
     plot_pie_feeding( man = input$feed_man,
                   cow = 1-input$feed_man,
@@ -48,7 +48,7 @@ shinyServer(function(input, output, session) {
 
 
   ####################################
-  output$plot_pie_expose <- renderPlot({
+  output$plot_pie_expose <- renderPlot(width = 150, height = 150,{
 
 
     plot_pie_exposure(man = input$feed_man,

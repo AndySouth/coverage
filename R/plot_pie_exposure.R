@@ -66,6 +66,8 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     pie(c(man-indoor, indoor), col=c(df$z[2:3]), labels=NA, main="", radius=1)
   }
 
+  #add title text
+  mtext("Human exposure", line=0)
 
 
   #return plot coords in case needed

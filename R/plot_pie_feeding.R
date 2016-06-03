@@ -61,6 +61,9 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="", radius=1)
   }
 
+  #add title text
+  mtext("Vector feeding", line=0)
+
 
   #this works to add the intervention as a blank, but isn't the way gerry does
   # if (intervention == 'bed nets')
