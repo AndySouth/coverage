@@ -63,9 +63,10 @@ shinyServer(function(input, output, session) {
   #to update values based on changes in others
 
   #stop feed_man going below feed_indoors
-  observe({ if ( input$feed_man < input$feed_in ) updateSliderInput(session, "feed_man", value = input$feed_in ) })
-  #stop feedindoors going above feed_man
+  #not needed now that human feed is a proportion of indoors
+  #observe({ if ( input$feed_man < input$feed_in ) updateSliderInput(session, "feed_man", value = input$feed_in ) })
 
+  #stop feedindoors going above feed_man
   # observe({ updateNumericInput(session, "feed_man", value = 1-input$feed_cow) })
   # observe({ updateNumericInput(session, "feed_cow", value = 1-input$feed_man) })
   # observe({ updateNumericInput(session, "feed_in", value = 1-input$feed_out) })

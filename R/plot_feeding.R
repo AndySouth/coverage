@@ -79,8 +79,8 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
 
   #axes after images to overwrite any whitespace
-  axis(2, at=c(0, cow, 1), labels=FALSE, lwd=3, pos = -0.1)
-  axis(4, at= c(0, outdoor, 1), labels=FALSE, lwd=3, pos = 1.1)
+  axis(2, at=c(0, 1-man, 1), labels=FALSE, lwd=3, pos = -0.1)
+  axis(4, at= c(0, 1-(man*indoor), 1), labels=FALSE, lwd=3, pos = 1.1)
 
 
   ################

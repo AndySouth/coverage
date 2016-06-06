@@ -27,21 +27,12 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   }
 
   #add a check for if indoor>man
-  if (indoor > man)
-  {
-    warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
-    return()
-  }
-
-
-  #create dataframe for feeding vis
-  df <- data.frame(
-    xmin = rep(0,3),
-    xmax = rep(1,3),
-    ymin = c(0, cow, outdoor),
-    ymax = c(cow, outdoor,1),
-    z = c(1:3)
-  )
+  #now that indoor is usd as prop of man this not needed
+  # if (indoor > man)
+  # {
+  #   warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
+  #   return()
+  # }
 
 
   #remove blank borders, bltr
@@ -50,15 +41,22 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #plot pie
   #pie(c(cow, man-indoor, indoor), col=df$z, labels=NA, main="Vector feeding", radius=1)
 
+  cat("in pie_feeding man=",man," indoor=",indoor,"\n")
+
   #including intervention
   if (intervention == 'bed nets')
   {
     #add intervention to end (man indoors)
-    pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="", radius=1)
+    #pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="", radius=1)
+    #6/6/16 change now that indoor is a proportion of man
+    pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1)
+
   } else if (intervention == 'vet insecticide')
   {
     #add intervention to start (cow)
-    pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="", radius=1)
+    #pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="", radius=1)
+    #6/6/16 change now that indoor is a proportion of man
+    pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1)
   }
 
   #add title text
