@@ -34,15 +34,24 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     # outdoor = 0.7
   # )
 
-  #create dataframe for feeding vis
+  # #create dataframe for feeding vis
+  # df <- data.frame(
+  #   xmin = rep(0,3),
+  #   xmax = rep(1,3),
+  #   ymin = c(0, cow, outdoor),
+  #   ymax = c(cow, outdoor,1),
+  #   z = c(1:3)
+  # )
+
+
+  # 6/6/16 i think that human feeding should be multiplied by indoor proportion
+  # closer to what suggested in Killen 2014
   df <- data.frame(
     xmin = rep(0,3),
     xmax = rep(1,3),
-    ymin = c(0, cow, outdoor),
-    ymax = c(cow, outdoor,1),
-    z = c(1:3)
+    ymin = c(0, 1-man, 1-(man*indoor)),
+    ymax = c(1-man, 1-(man*indoor),1), z=c(1:3)
   )
-
 
   #remove blank borders
   par(mar = c(0,0,0,0),oma = c(0, 0, 0, 0))
@@ -57,16 +66,16 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
   #add images to label axes
 
-  img_cow <- readPNG(system.file("extdata", 'cow_thumb.png', package = "coverage"))
+  img_cow <- png::readPNG(system.file("extdata", 'cow_thumb.png', package = "coverage"))
   rasterImage(img_cow, xleft=-0.25, ybottom=cow/2-0.05, xright=-0.15, ytop=cow/2+0.05, interpolate = FALSE)
 
-  img_man <- readPNG(system.file("extdata", 'man_thumb.png', package = "coverage"))
+  img_man <- png::readPNG(system.file("extdata", 'man_thumb.png', package = "coverage"))
   rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, cow + man/2+0.05, interpolate = FALSE)
 
-  img_indoor <- readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
+  img_indoor <- png::readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
   rasterImage(img_indoor, xleft=1.1, ybottom=outdoor+indoor/2-0.1, xright=1.3, outdoor+indoor/2+0.1, interpolate = FALSE)
 
-  img_outdoor <- readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
+  img_outdoor <- png::readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
   rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
 
   #axes after images to overwrite any whitespace
