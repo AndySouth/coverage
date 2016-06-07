@@ -25,6 +25,15 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     indoor = 0.3
     outdoor = 0.7
   }
+  if (is.null(cow)  )
+  {
+    cow = 1-man
+  }
+  if (is.null(outdoor)  )
+  {
+    outdoor = 1-indoor
+  }
+
 
   # dataframe not needed
   # dfv <- data.frame(
@@ -70,10 +79,11 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   rasterImage(img_cow, xleft=-0.25, ybottom=cow/2-0.05, xright=-0.15, ytop=cow/2+0.05, interpolate = FALSE)
 
   img_man <- png::readPNG(system.file("extdata", 'man_thumb.png', package = "coverage"))
-  rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, cow + man/2+0.05, interpolate = FALSE)
+  rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, ytop=cow + man/2+0.05, interpolate = FALSE)
 
   img_indoor <- png::readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
-  rasterImage(img_indoor, xleft=1.1, ybottom=outdoor+indoor/2-0.1, xright=1.3, outdoor+indoor/2+0.1, interpolate = FALSE)
+  #TODO sort positioning of in & out
+  rasterImage(img_indoor, xleft=1.1, ybottom=cow +((1-indoor)+(man*indoor))/2-0.1, xright=1.3, ytop=cow+((1-indoor)+(man*indoor))/2+0.1, interpolate = FALSE)
 
   img_outdoor <- png::readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
   rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
@@ -93,12 +103,12 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #or should I first just allow bed nets & vet insecticide
   if (intervention == 'bed nets')
   {
-    ymin <- outdoor+((1-coverage)*indoor)
+    ymin <- (1-man)+(man*(1-indoor))+((1-coverage)*man*indoor)
     ymax <- 1
   } else if (intervention == 'vet insecticide')
   {
     ymin <- 0
-    ymax <- cow*coverage
+    ymax <- (1-man)*coverage
   }
 
   df_int <- data.frame(
