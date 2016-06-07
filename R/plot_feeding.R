@@ -82,8 +82,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, ytop=cow + man/2+0.05, interpolate = FALSE)
 
   img_indoor <- png::readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
-  #TODO sort positioning of in & out
-  rasterImage(img_indoor, xleft=1.1, ybottom=cow +((1-indoor)+(man*indoor))/2-0.1, xright=1.3, ytop=cow+((1-indoor)+(man*indoor))/2+0.1, interpolate = FALSE)
+  rasterImage(img_indoor, xleft=1.1, ybottom=cow + (man*(1-indoor))+(man*indoor)/2-0.1, xright=1.3, ytop=cow+(man*(1-indoor))+(man*indoor)/2+0.1, interpolate = FALSE)
 
   img_outdoor <- png::readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
   rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
