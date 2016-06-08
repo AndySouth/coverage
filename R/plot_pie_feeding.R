@@ -25,7 +25,22 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     indoor = 0.3
     outdoor = 0.7
   }
-
+  if (is.null(cow)  )
+  {
+    cow = 1-man
+  }
+  if (is.null(outdoor)  )
+  {
+    outdoor = 1-indoor
+  }
+  if (is.null(man)  )
+  {
+    man = 1-cow
+  }
+  if (is.null(indoor)  )
+  {
+    indoor = 1-outdoor
+  }
   #add a check for if indoor>man
   #now that indoor is usd as prop of man this not needed
   # if (indoor > man)
@@ -49,15 +64,22 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     #add intervention to end (man indoors)
     #pie(c(cow, man-indoor, indoor-(indoor*coverage)), col=c(df$z), labels=NA, main="", radius=1)
     #6/6/16 change now that indoor is a proportion of man
-    pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1)
+    #pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1)
+    #8/6/16 set radius from proportion of max feeding
+    pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1-(man*indoor*coverage))
 
   } else if (intervention == 'vet insecticide')
   {
     #add intervention to start (cow)
     #pie(c(cow-(cow*coverage), man-indoor, indoor), col=c(df$z), labels=NA, main="", radius=1)
     #6/6/16 change now that indoor is a proportion of man
-    pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1)
+    #pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1)
+    #8/6/16 set radius from proportion of max feeding
+    pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1-(cow*coverage))
   }
+
+  #add a circle for if feeding was 100%
+  symbols(x=0, y=0, circles=1, inches=FALSE, add=TRUE)
 
   #add title text
   mtext("Vector feeding", line=0)

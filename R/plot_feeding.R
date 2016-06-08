@@ -33,6 +33,14 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     outdoor = 1-indoor
   }
+  if (is.null(man)  )
+  {
+    man = 1-cow
+  }
+  if (is.null(indoor)  )
+  {
+    indoor = 1-outdoor
+  }
 
 
   # dataframe not needed
