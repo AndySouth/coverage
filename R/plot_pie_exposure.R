@@ -13,7 +13,8 @@
 #' @export
 
 plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
-                          intervention='bed nets', coverage=0.8 )
+                          intervention='bed nets', coverage=0.8,
+                          col=c("deepskyblue", "orange", "yellow"))
   #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
 
@@ -65,7 +66,9 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     xmax = rep(1,3),
     ymin = c(0, cow, outdoor),
     ymax = c(cow, outdoor,1),
-    z = c(1:3)
+    #z = c(1:3)
+    #z = c("yellow", "orange", "deepskyblue"),
+    stringsAsFactors = FALSE
   )
 
 
@@ -81,7 +84,7 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     #6/6/16 change now that indoor is a proportion of man
     #pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
     #8/6/16 set radius from proportion of max humans exposed
-    pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=c(df$z[2:3]), labels=NA, main="", radius=man-(man*indoor*coverage))
+    pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=col[2:3], labels=NA, main="", radius=man-(man*indoor*coverage), init.angle = 90)
 
   } else if (intervention == 'vet insecticide')
   {
@@ -90,7 +93,7 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     #6/6/16 change now that indoor is a proportion of man
     #pie(c(man-(man*indoor), man*indoor ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
     #8/6/16 set radius from proportion of max humans exposed
-    pie(c(man-(man*indoor), man*indoor ), col=c(df$z[2:3]), labels=NA, main="", radius=man)
+    pie(c(man-(man*indoor), man*indoor ), col=col[2:3], labels=NA, main="", radius=man, init.angle = 90)
 
   }
 

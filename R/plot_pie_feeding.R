@@ -13,7 +13,8 @@
 #' @export
 
 plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
-                          intervention='bed nets', coverage=0.8 )
+                          intervention='bed nets', coverage=0.8,
+                          col=c("deepskyblue", "orange", "yellow") )
   #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
 
@@ -66,7 +67,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     #6/6/16 change now that indoor is a proportion of man
     #pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1)
     #8/6/16 set radius from proportion of max feeding
-    pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=c(1:3), labels=NA, main="", radius=1-(man*indoor*coverage))
+    pie(c(1-man, man*(1-indoor), (man*indoor)-(man*indoor*coverage)), col=col, labels=NA, main="", radius=1-(man*indoor*coverage), init.angle = 90)
 
   } else if (intervention == 'vet insecticide')
   {
@@ -75,7 +76,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     #6/6/16 change now that indoor is a proportion of man
     #pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1)
     #8/6/16 set radius from proportion of max feeding
-    pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=c(1:3), labels=NA, main="", radius=1-(cow*coverage))
+    pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=col, labels=NA, main="", radius=1-(cow*coverage), init.angle = 90)
   }
 
   #add a circle for if feeding was 100%

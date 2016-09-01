@@ -13,7 +13,8 @@
 #' @export
 
 plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
-                          intervention='bed nets', coverage=0.8 )
+                          intervention='bed nets', coverage=0.8,
+                          col=c("deepskyblue", "orange", "yellow") )
                           #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
 
@@ -43,14 +44,6 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   }
 
 
-  # dataframe not needed
-  # dfv <- data.frame(
-    # man = 0.8,
-    # cow = 0.2,
-    # indoor = 0.3,
-    # outdoor = 0.7
-  # )
-
   # #create dataframe for feeding vis
   # df <- data.frame(
   #   xmin = rep(0,3),
@@ -67,18 +60,19 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
     xmin = rep(0,3),
     xmax = rep(1,3),
     ymin = c(0, 1-man, 1-(man*indoor)),
-    ymax = c(1-man, 1-(man*indoor),1), z=c(1:3)
+    ymax = c(1-man, 1-(man*indoor),1)
+    #z=c(1:3) #determines colours of blocks
   )
 
   #remove blank borders
   par(mar = c(0,0,0,0),oma = c(0, 0, 0, 0))
 
   #create blank plot
-  #can cahnge extents here to allow in more or less things in borders
+  #can change extents here to allow in more or less things in borders
   plot(c(-0.2,1.25),c(0,1), type='n', axes=FALSE, xlab='', ylab='', asp=1)
 
   #add feeding rectangles
-  rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=df$z)
+  rect(xleft = df$xmin, xright = df$xmax, ybottom = df$ymin, ytop = df$ymax, col=col)
 
 
   #add images to label axes
