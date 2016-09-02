@@ -12,30 +12,32 @@ shinyUI(fluidPage(
   tags$head(
     tags$style(HTML("
 
-                    [class*='col-'] {
-                    padding: 10px;
-                    border: 1px;
-                    position: relative;
-                    min-height: 1px;
-                    }
+                    .col-sm-2 {padding: 80px 0px; /*border: 1px solid green;*/}
 
-                    .container {
-                    margin-right: 0;
-                    margin-left: 0;
-                    float: left;
-                    }
-                    .col-sm-1 {width: 8.33%; float: left;}
-                    .col-sm-2 {width: 16.66%; float: left;}
-                    .col-sm-3 {width: 25%; float: left;}
-                    .col-sm-4 {width: 33.33%; float: left;}
-                    .col-sm-5 {width: 41.66%; float: left;}
-                    .col-sm-6 {width: 50%;  float: left;}
-                    .col-sm-7 {width: 58.33%; float: left;}
-                    .col-sm-8 {width: 66.66%; float: left; padding: 5px;} !to make more space for plots
-                    .col-sm-9 {width: 75%; float: left;}
-                    .col-sm-10 {width: 83.33%; float: left;}
-                    .col-sm-11 {width: 91.66%; float: left;}
-                    .col-sm-12 {width: 100%; float: left;}
+                    /* For mobile phones: */
+                    /* note here I'm not following mobile first design ! */
+                    @media only screen and (max-width: 768px) {
+
+
+                        [class*='col-'] {
+                        padding: 5px;
+                        border: 1px;
+                        position: relative;
+                        min-height: 1px;
+                        }
+
+                        .container {
+                        margin-right: 0;
+                        margin-left: 0;
+                        float: left;
+                        }
+                        .col-sm-2 {width: 50%; float: left; height: 150px;}
+                        .col-sm-3 {width: 25%; float: left;}
+                        .col-sm-8 {width: 100%; float: left; height: 350px;} ! padding: 5px;} !to make more space for plots
+                        ! so on pc the where the css doesn't kick in the 12 columns fit in one row (8+2+2)
+                        ! on the phone the width8 col takes up 100%, and the width2 columns take up 50% of the next row
+                        }
+
 
                     "))
     ),
@@ -52,6 +54,10 @@ shinyUI(fluidPage(
     # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
     column(2, plotOutput('plot_pie_feed') ),
     column(2, plotOutput('plot_pie_expose') )
+
+    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_feed'), HTML("</div>")),
+    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_expose'), HTML("</div>"))
+
   ), #end fluid row
 
 
