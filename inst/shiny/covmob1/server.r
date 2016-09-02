@@ -35,7 +35,6 @@ shinyServer(function(input, output, session) {
 
 
   ####################################
-  #output$plot_pie_feed <- renderPlot(width = 150, height = 150,{
   output$plot_pie_feed <- renderPlot(width = 150, height = 150,{
 
     plot_pie_feeding( man = input$feed_man,

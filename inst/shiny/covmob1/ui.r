@@ -9,34 +9,42 @@ shinyUI(fluidPage(
   #can add CSS controls in here
   #http://shiny.rstudio.com/articles/css.html
   #http://www.w3schools.com/css/css_rwd_mediaqueries.asp
+
+  #trying to put the @media bit in to make it responsive
+  #i think i must have made another change later when i modified from pc to mobile
+
   tags$head(
     tags$style(HTML("
 
-                    [class*='col-'] {
-                    padding: 10px;
-                    border: 1px;
-                    position: relative;
-                    min-height: 1px;
-                    }
+                    @media only screen and (max-width: 768px) {
 
-                    .container {
-                    margin-right: 0;
-                    margin-left: 0;
-                    float: left;
-                    }
-                    .col-sm-1 {width: 8.33%; float: left;}
-                    .col-sm-2 {width: 16.66%; float: left;}
-                    .col-sm-3 {width: 25%; float: left;}
-                    .col-sm-4 {width: 33.33%; float: left;}
-                    .col-sm-5 {width: 41.66%; float: left;}
-                    .col-sm-6 {width: 50%;  float: left;}
-                    .col-sm-7 {width: 58.33%; float: left;}
-                    .col-sm-8 {width: 66.66%; float: left; padding: 5px;} !to make more space for plots
-                    .col-sm-9 {width: 75%; float: left;}
-                    .col-sm-10 {width: 83.33%; float: left;}
-                    .col-sm-11 {width: 91.66%; float: left;}
-                    .col-sm-12 {width: 100%; float: left;}
+                      /* For mobile phones: */
 
+                      [class*='col-'] {
+                      padding: 10px;
+                      border: 1px;
+                      position: relative;
+                      min-height: 1px;
+                      }
+
+                      .container {
+                      margin-right: 0;
+                      margin-left: 0;
+                      float: left;
+                      }
+                      .col-sm-1 {width: 8.33%; float: left;}
+                      .col-sm-2 {width: 16.66%; float: left;}
+                      .col-sm-3 {width: 25%; float: left;}
+                      .col-sm-4 {width: 33.33%; float: left;}
+                      .col-sm-5 {width: 41.66%; float: left;}
+                      .col-sm-6 {width: 50%;  float: left;}
+                      .col-sm-7 {width: 58.33%; float: left;}
+                      .col-sm-8 {width: 66.66%; float: left; padding: 5px;} !to make more space for plots
+                      .col-sm-9 {width: 75%; float: left;}
+                      .col-sm-10 {width: 83.33%; float: left;}
+                      .col-sm-11 {width: 91.66%; float: left;}
+                      .col-sm-12 {width: 100%; float: left;}
+                    }
                     "))
     ),
 
