@@ -2,8 +2,8 @@ name: covmob1
 account: andysouth
 server: shinyapps.io
 appId: 106367
-bundleId: 474829
+bundleId: 476330
 url: https://andysouth.shinyapps.io/covmob1/
-when: 1465337225.24472
+when: 1465468645.68526
 asMultiple: FALSE
 asStatic: FALSE
