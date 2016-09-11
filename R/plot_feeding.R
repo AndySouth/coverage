@@ -6,14 +6,17 @@
 #' @param cow
 #' @param indoor
 #' @param outdoor
-#' @param intervention one of 'bed nets', 'vet insecticide'
-#' @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
+#' @param intervene_indoor proportion coverage of intervention targetting indoor
+#' @param intervene_cow proportion coverage of intervention targetting livestock
+# @param intervention one of 'bed nets', 'vet insecticide'
+# @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
 #'
 #' @return dataframe of some plot coords
 #' @export
 
 plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
-                          intervention='bed nets', coverage=0.8,
+                          #intervention='bed nets', coverage=0.8,
+                          intervene_indoor=0.8, intervene_cow=0,
                           col=c("deepskyblue", "orange", "yellow") )
                           #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
@@ -99,30 +102,39 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #cat("intervention=",intervention,"\n")
 
 
-  #create dataframe for intervention vis - trickier
-  #may need multiple polygons
-  #or should I first just allow bed nets & vet insecticide
-  if (intervention == 'bed nets')
-  {
-    ymin <- (1-man)+(man*(1-indoor))+((1-coverage)*man*indoor)
-    ymax <- 1
-  } else if (intervention == 'vet insecticide')
-  {
-    ymin <- 0
-    ymax <- (1-man)*coverage
-  }
+  # #create dataframe for intervention vis - trickier
+  # #may need multiple polygons
+  # #or should I first just allow bed nets & vet insecticide
+  # if (intervention == 'bed nets')
+  # {
+  #   ymin <- (1-man)+(man*(1-indoor))+((1-coverage)*man*indoor)
+  #   ymax <- 1
+  # } else if (intervention == 'vet insecticide')
+  # {
+  #   ymin <- 0
+  #   ymax <- (1-man)*coverage
+  # }
+  #
+  # df_int <- data.frame(
+  #   xmin = 0,
+  #   xmax = 1,
+  #   ymin = ymin,
+  #   ymax = ymax
+  # )
+  #
+  # #add intervention polygon on top
+  # rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col=rgb(1,1,1,0.95))
 
-  df_int <- data.frame(
-    xmin = 0,
-    xmax = 1,
-    ymin = ymin,
-    ymax = ymax
-  )
 
-  #add intervention polygon on top
-  #to do I could also add to the side ?
-  rect(xleft = df_int$xmin, xright = df_int$xmax, ybottom = df_int$ymin, ytop = df_int$ymax, col=rgb(1,1,1,0.95))
+  # interventions indoor
+  ymin <- (1-man)+(man*(1-indoor))+((1-intervene_indoor)*man*indoor)
+  ymax <- 1
+  rect(xleft=0, xright=1, ybottom=ymin, ytop=ymax, col=rgb(1,1,1,0.95))
 
+  #interventions cow
+  ymin <- 0
+  ymax <- (1-man)*intervene_cow
+  rect(xleft=0, xright=1, ybottom=ymin, ytop=ymax, col=rgb(1,1,1,0.95))
 
 
   #return plot coords in case needed

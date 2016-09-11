@@ -6,15 +6,18 @@
 #' @param cow
 #' @param indoor
 #' @param outdoor
-#' @param intervention one of 'bed nets', 'vet insecticide'
-#' @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
+#' @param intervene_indoor proportion coverage of intervention targetting indoor
+#' @param intervene_cow proportion coverage of intervention targetting livestock
+# @param intervention one of 'bed nets', 'vet insecticide'
+# @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
 #'
 #' @return dataframe of some plot coords
 #' @export
 
 plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
-                          intervention='bed nets', coverage=0.8,
-                          col=c("deepskyblue", "orange", "yellow"))
+                               #intervention='bed nets', coverage=0.8,
+                               intervene_indoor=0.8, intervene_cow=0,
+                               col=c("deepskyblue", "orange", "yellow"))
   #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
 
@@ -52,11 +55,12 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #   warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
   #   return()
   # }
-  if (man-indoor==0 & indoor-(indoor*coverage)==0)
-  {
-    warning("no human exposure, exiting plot")
-    return()
-  }
+  # todo check how best to deal with zero human exposure
+  # if (man-indoor==0 & indoor-(indoor*coverage)==0)
+  # {
+  #   warning("no human exposure, exiting plot")
+  #   return()
+  # }
 
 
 
@@ -76,26 +80,32 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
 
 
-  #including intervention
-  if (intervention == 'bed nets')
-  {
-    #add intervention to end (man indoors)
-    #pie(c(man-indoor, indoor-(indoor*coverage)), col=c(df$z[2:3]), labels=NA, main="", radius=1)
-    #6/6/16 change now that indoor is a proportion of man
-    #pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
-    #8/6/16 set radius from proportion of max humans exposed
-    pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=col[2:3], labels=NA, main="", radius=man-(man*indoor*coverage), init.angle = 90)
+  # #including intervention
+  # if (intervention == 'bed nets')
+  # {
+  #   #add intervention to end (man indoors)
+  #   #pie(c(man-indoor, indoor-(indoor*coverage)), col=c(df$z[2:3]), labels=NA, main="", radius=1)
+  #   #6/6/16 change now that indoor is a proportion of man
+  #   #pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
+  #   #8/6/16 set radius from proportion of max humans exposed
+  #   pie(c(man-(man*indoor), man*indoor*(1-coverage) ), col=col[2:3], labels=NA, main="", radius=man-(man*indoor*coverage), init.angle = 90)
+  #
+  # } else if (intervention == 'vet insecticide')
+  # {
+  #   #add intervention to start (cow)
+  #   #pie(c(man-indoor, indoor), col=c(df$z[2:3]), labels=NA, main="", radius=1)
+  #   #6/6/16 change now that indoor is a proportion of man
+  #   #pie(c(man-(man*indoor), man*indoor ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
+  #   #8/6/16 set radius from proportion of max humans exposed
+  #   pie(c(man-(man*indoor), man*indoor ), col=col[2:3], labels=NA, main="", radius=man, init.angle = 90)
+  # }
 
-  } else if (intervention == 'vet insecticide')
-  {
-    #add intervention to start (cow)
-    #pie(c(man-indoor, indoor), col=c(df$z[2:3]), labels=NA, main="", radius=1)
-    #6/6/16 change now that indoor is a proportion of man
-    #pie(c(man-(man*indoor), man*indoor ), col=c(df$z[2:3]), labels=NA, main="", radius=1)
-    #8/6/16 set radius from proportion of max humans exposed
-    pie(c(man-(man*indoor), man*indoor ), col=col[2:3], labels=NA, main="", radius=man, init.angle = 90)
+  # intervene_cow doesn't effect human exposure (i think)
+  # todo check this
+  radius <- man-(man*indoor*intervene_indoor)
 
-  }
+  pie(c(man-(man*indoor), man*indoor*(1-intervene_indoor) ), col=col[2:3], labels=NA, main="", radius=radius, init.angle = 90)
+
 
   #add a circle for if exposure was 100%
   symbols(x=0, y=0, circles=1, inches=FALSE, add=TRUE)
