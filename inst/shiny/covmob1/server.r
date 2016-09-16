@@ -1,4 +1,5 @@
-#coverage/inst/shiny/covmob1/ui.r
+#coverage/inst/shiny/covmob1/server.r
+#*deprecated replaved by coverage1*
 #andy south 12/5/16
 
 #https://andysouth.shinyapps.io/covmob1/

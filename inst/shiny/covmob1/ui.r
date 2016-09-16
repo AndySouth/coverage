@@ -1,4 +1,5 @@
 #coverage/inst/shiny/covmob1/ui.r
+#* deprecated version, replaced by coverage1
 #andy south 12/5/16
 
 library(shiny)
