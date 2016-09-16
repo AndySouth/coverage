@@ -1,4 +1,5 @@
 #coverage/inst/shiny/coverage1/server.r
+#*current version*
 #andy south 12/5/16
 
 #https://andysouth.shinyapps.io/coverage1/
@@ -25,8 +26,10 @@ shinyServer(function(input, output, session) {
                       cow = 1-input$feed_man,
                       indoor = input$feed_in,
                       outdoor = 1-input$feed_in,
-                      intervention = input$intervention,
-                      coverage = input$target_coverage )
+                      intervene_indoor = input$intervene_indoor,
+                      intervene_cow = input$intervene_cow )
+                      #intervention = input$intervention,
+                      #coverage = input$target_coverage )
 
 
       #}) #end isolate
@@ -42,8 +45,8 @@ shinyServer(function(input, output, session) {
                   cow = 1-input$feed_man,
                   indoor = input$feed_in,
                   outdoor = 1-input$feed_in,
-                  intervention = input$intervention,
-                  coverage = input$target_coverage )
+                  intervene_indoor = input$intervene_indoor,
+                  intervene_cow = input$intervene_cow )
   })
 
 
@@ -56,8 +59,10 @@ shinyServer(function(input, output, session) {
                       cow = 1-input$feed_man,
                       indoor = input$feed_in,
                       outdoor = 1-input$feed_in,
-                      intervention = input$intervention,
-                      coverage = input$target_coverage )
+                      intervene_indoor = input$intervene_indoor,
+                      intervene_cow = input$intervene_cow )
+    #intervention = input$intervention,
+    #coverage = input$target_coverage )
   })
 
 

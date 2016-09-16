@@ -1,5 +1,6 @@
 #coverage/inst/shiny/coverage1/ui.r
-#andy south 12/5/16
+#*this is current version, resizes to browser & mob
+#andy south 16/9/16
 
 library(shiny)
 
@@ -76,12 +77,13 @@ shinyUI(fluidPage(
     ),
     column(3, offset = 0,
            #h4("Intervention"),
-           radioButtons("intervention","intervention",choices=c("bed nets","vet insecticide"))
-           #sliderInput("target_coverage", "coverage", 0.7, min = 0, max = 1, step = 0.1)
+           #radioButtons("intervention","intervention",choices=c("bed nets","vet insecticide"))
+           sliderInput("intervene_indoor", "insecticide bed net coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
     ),
     column(3, offset = 0,
-           sliderInput("target_coverage", "intervention coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
-    )
+           sliderInput("intervene_cow", "vet insecticide coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+
+               )
            # h4("Intervention target"),
            # numericInput("target_man", "human", 0.7, min = 0, max = 1, step = 0.1),
            # numericInput("target_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
