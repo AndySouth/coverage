@@ -22,12 +22,13 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 {
 
   #set some defaults
-  if (is.null(man) & is.null(cow) & is.null(indoor) & is.null(outdoor) )
+  if (is.null(man) & is.null(cow) )
   {
     man = 0.8
-    cow = 0.2
+  }
+  if (is.null(indoor) & is.null(outdoor) )
+  {
     indoor = 0.3
-    outdoor = 0.7
   }
   if (is.null(cow)  )
   {
@@ -45,6 +46,34 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     indoor = 1-outdoor
   }
+
+
+  #remove blank borders, bltr
+  par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
+
+
+  cat("in pie_feeding man=",man," indoor=",indoor,"\n")
+
+
+  # subtract the interventions from the total before passing to the pie function
+  radius <- 1-((man*indoor*intervene_indoor) + (cow*intervene_cow))
+
+  #to protect against when no exposure, otherwise pie(0) generates error
+  pie_plotted <- FALSE
+  if (radius > 0)
+  {
+    pie(c((1-man)-((1-man)*intervene_cow), man*(1-indoor), (man*indoor)-(man*indoor*intervene_indoor)), col=col, labels=NA, main="", radius=radius, init.angle = 90)
+    pie_plotted <- TRUE
+  }
+
+  #add a circle for if feeding was 100%
+  symbols(x=0, y=0, circles=1, inches=FALSE, bty='n', add=pie_plotted)
+
+  #add title text
+  mtext("Vector feeding", line=0)
+
+  # OLD CODE
+
   #add a check for if indoor>man
   #now that indoor is usd as prop of man this not needed
   # if (indoor > man)
@@ -52,15 +81,6 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #   warning("biting indoor > human implies vectors are biting cattle indoors! exiting plot")
   #   return()
   # }
-
-
-  #remove blank borders, bltr
-  par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
-
-  #plot pie
-  #pie(c(cow, man-indoor, indoor), col=df$z, labels=NA, main="Vector feeding", radius=1)
-
-  cat("in pie_feeding man=",man," indoor=",indoor,"\n")
 
   # #including intervention
   # if (intervention == 'bed nets')
@@ -82,22 +102,6 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #   pie(c((1-man)-((1-man)*coverage), man*(1-indoor), man*indoor), col=col, labels=NA, main="", radius=1-(cow*coverage), init.angle = 90)
   # }
 
-  # 9/9/16 should be able to replace the above with something more straightforward
-  # subtract the interventions from the total before passing to the pie function
-  # todo check this
-  radius <- 1-((man*indoor*intervene_indoor) + (cow*intervene_cow))
-
-  # combine two previous
-  pie(c((1-man)-((1-man)*intervene_cow), man*(1-indoor), (man*indoor)-(man*indoor*intervene_indoor)), col=col, labels=NA, main="", radius=radius, init.angle = 90)
-
-
-  #add a circle for if feeding was 100%
-  symbols(x=0, y=0, circles=1, inches=FALSE, add=TRUE)
-
-  #add title text
-  mtext("Vector feeding", line=0)
-
-
   #this works to add the intervention as a blank, but isn't the way gerry does
   # if (intervention == 'bed nets')
   # {
@@ -110,8 +114,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   # }
 
 
-
   #return plot coords in case needed
-  invisible(df)
+  #invisible(df)
 
 }

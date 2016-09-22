@@ -22,12 +22,13 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 {
 
   #set some defaults
-  if (is.null(man) & is.null(cow) & is.null(indoor) & is.null(outdoor) )
+  if (is.null(man) & is.null(cow) )
   {
     man = 0.8
-    cow = 0.2
+  }
+  if (is.null(indoor) & is.null(outdoor) )
+  {
     indoor = 0.3
-    outdoor = 0.7
   }
   if (is.null(cow)  )
   {
