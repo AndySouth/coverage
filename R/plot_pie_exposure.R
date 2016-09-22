@@ -51,7 +51,9 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   #remove blank borders, bltr
   par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
 
-  # intervene_cow doesn't effect human exposure
+  #radius of the pie reduced due to interventions
+  #intervene_cow doesn't effect human exposure
+  #todo check whether I should do something to make area respond rather than radius
   radius <- man-(man*indoor*intervene_indoor)
 
   #to protect against when no exposure, otherwise pie(0) generates error
@@ -67,7 +69,7 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
 
   #add title text
-  mtext("Human exposure", line=0)
+  mtext(paste("Human exposure :",round(radius, digits=2)), line=0)
 
 
   # OLD CODE

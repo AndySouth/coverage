@@ -70,7 +70,8 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   symbols(x=0, y=0, circles=1, inches=FALSE, bty='n', add=pie_plotted)
 
   #add title text
-  mtext("Vector feeding", line=0)
+  #mtext("Vector feeding", line=0)
+  mtext(paste("Vector feeding :",round(radius, digits=2)), line=0)
 
   # OLD CODE
 
