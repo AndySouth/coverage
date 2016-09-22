@@ -52,8 +52,9 @@ shinyUI(fluidPage(
   title = "coverage of vector control interventions",
 
   h5("Vector control demonstrator prototype. Gerry Killeen & Andy South."),
-  h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
-  h5("Change inputs below to see implications."),
+  h5("OLD version replaced by coverage1"),
+  #h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
+  #h5("Change inputs below to see implications."),
 
   # fluidRow(
   #   column(8, plotOutput('plot_feed')),
