@@ -3,7 +3,7 @@
 #andy south 16/9/16
 
 library(shiny)
-
+library(markdown)
 
 shinyUI(fluidPage(
 
