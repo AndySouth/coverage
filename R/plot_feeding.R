@@ -5,18 +5,21 @@
 #' @param man
 #' @param cow
 #' @param indoor
-#' @param outdoor
+# @param outdoor
 #' @param intervene_indoor proportion coverage of intervention targetting indoor
 #' @param intervene_cow proportion coverage of intervention targetting livestock
+#' @param intervene_outdoor proportion coverage of intervention targetting outdoor
 # @param intervention one of 'bed nets', 'vet insecticide'
 # @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
 #'
 #' @return dataframe of some plot coords
 #' @export
 
-plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
+plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
+                          #outdoor=NULL,
                           #intervention='bed nets', coverage=0.8,
                           intervene_indoor=0.8, intervene_cow=0,
+                          intervene_outdoor=0.2,
                           col=c("deepskyblue", "orange", "yellow") )
                           #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
@@ -26,7 +29,7 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     man = 0.8
   }
-  if (is.null(indoor) & is.null(outdoor) )
+  if (is.null(indoor)) # & is.null(outdoor) )
   {
     indoor = 0.3
   }
@@ -34,18 +37,24 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     cow = 1-man
   }
-  if (is.null(outdoor)  )
-  {
-    outdoor = 1-indoor
-  }
+  # if (is.null(outdoor)  )
+  # {
+  #   outdoor = 1-indoor
+  # }
   if (is.null(man)  )
   {
     man = 1-cow
   }
-  if (is.null(indoor)  )
-  {
-    indoor = 1-outdoor
-  }
+  # if (is.null(indoor)  )
+  # {
+  #   indoor = 1-outdoor
+  # }
+
+
+  # **IMPORTANT**
+  # indoor sets proportion of man bitten inside
+  # therefore outdoor is 1-(man*indoor) not 1-indoor
+  outdoor <- 1-(man*indoor)
 
 
   # #create dataframe for feeding vis
@@ -63,9 +72,8 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   df <- data.frame(
     xmin = rep(0,3),
     xmax = rep(1,3),
-    ymin = c(0, 1-man, 1-(man*indoor)),
-    ymax = c(1-man, 1-(man*indoor),1)
-    #z=c(1:3) #determines colours of blocks
+    ymin = c(0, 1-man, outdoor),
+    ymax = c(1-man, outdoor,1)
   )
 
   #remove blank borders
@@ -95,8 +103,10 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
   # axes after images to overwrite any whitespace
   # tcl=tickmark length, +ve =towards plot
+  # left
   axis(2, at=c(0, 1-man, 1), labels=FALSE, lwd=3, pos = -0.1, tcl = 1)
-  axis(4, at= c(0, 1-(man*indoor), 1), labels=FALSE, lwd=3, pos = 1.1, tcl = 1)
+  # right
+  axis(4, at= c(0, outdoor, 1), labels=FALSE, lwd=3, pos = 1.1, tcl = 1)
 
 
   ################
@@ -129,13 +139,19 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
 
   # interventions indoor
-  ymin <- (1-man)+(man*(1-indoor))+((1-intervene_indoor)*man*indoor)
+  #ymin <- (1-man)+(man*(1-indoor))+((1-intervene_indoor)*man*indoor)
+  ymin <- 1-(indoor * man * intervene_indoor)
   ymax <- 1
   rect(xleft=0, xright=1, ybottom=ymin, ytop=ymax, col=rgb(1,1,1,0.95))
 
   #interventions cow
   ymin <- 0
   ymax <- (1-man)*intervene_cow
+  rect(xleft=0, xright=1, ybottom=ymin, ytop=ymax, col=rgb(1,1,1,0.95))
+
+  # 5/10/16 trying to add intervene_outdoor for insecticide emanators as requested by Gerry
+  ymin <- outdoor-(intervene_outdoor*(outdoor-cow))
+  ymax <- outdoor
   rect(xleft=0, xright=1, ybottom=ymin, ytop=ymax, col=rgb(1,1,1,0.95))
 
 
