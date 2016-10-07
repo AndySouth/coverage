@@ -82,7 +82,7 @@ shinyUI(fluidPage(
            sliderInput("intervene_indoor", "insecticide bed net coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
     ),
     column(2, offset = 0,
-           sliderInput("intervene_outdoor", "insecticide emanators", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+           sliderInput("intervene_outdoor", "insecticide emanator coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
     ),
     column(2, offset = 0,
            sliderInput("intervene_cow", "vet insecticide coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
