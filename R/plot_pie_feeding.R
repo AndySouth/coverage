@@ -62,7 +62,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
   par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
 
 
-  cat("in pie_feeding man=",man," indoor=",indoor,"\n")
+  #cat("in pie_feeding man=",man," indoor=",indoor,"\n")
 
 
   # subtract the interventions from the total before passing to the pie function
