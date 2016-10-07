@@ -40,30 +40,22 @@ shinyUI(fluidPage(
                         ! on the phone the width8 col takes up 100%, and the width2 columns take up 50% of the next row
                         }
 
-
                     "))
     ),
 
   title = "coverage of vector control interventions",
 
-  h5("Vector control demonstrator. Andy South & Gerry Killeen."),
+  #7/10/16
+  #navbarPage sets up navbar, title appears on left
+  navbarPage("vector control graphical model", id="selectedTab",
+
+     # tab "seek stable mortality" ---------------------------
+     tabPanel("UI", value="seek",
+  #7/10/16
+
+  #h5("Vector control demonstrator. Andy South & Gerry Killeen."),
   h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
-  h5("Change inputs below to see implications."),
-
-  fluidRow(
-    column(8, plotOutput('plot_feed')),
-    # column(2, h5("Vector feeding"), plotOutput('plot_pie_feed') ),
-    # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
-    column(2, plotOutput('plot_pie_feed') ),
-    column(2, plotOutput('plot_pie_expose') )
-
-    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_feed'), HTML("</div>")),
-    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_expose'), HTML("</div>"))
-
-  ), #end fluid row
-
-
-  #hr(),
+  h5("Change inputs below to see implications. Andy South & Gerry Killeen."),
 
   fluidRow(
     column(2,
@@ -87,13 +79,36 @@ shinyUI(fluidPage(
     column(2, offset = 0,
            sliderInput("intervene_cow", "vet insecticide coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
     )
-           # h4("Intervention target"),
-           # numericInput("target_man", "human", 0.7, min = 0, max = 1, step = 0.1),
-           # numericInput("target_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
-           # numericInput("target_in","indoor", 0.6, min = 0, max = 1, step = 0.1),
-           # numericInput("target_out","outdoor", 0.4, min = 0, max = 1, step = 0.1)
+    # h4("Intervention target"),
+    # numericInput("target_man", "human", 0.7, min = 0, max = 1, step = 0.1),
+    # numericInput("target_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
+    # numericInput("target_in","indoor", 0.6, min = 0, max = 1, step = 0.1),
+    # numericInput("target_out","outdoor", 0.4, min = 0, max = 1, step = 0.1)
 
+  ), #end fluid row
+
+  fluidRow(
+    column(8, plotOutput('plot_feed')),
+    # column(2, h5("Vector feeding"), plotOutput('plot_pie_feed') ),
+    # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
+    column(2, plotOutput('plot_pie_feed') ),
+    column(2, plotOutput('plot_pie_expose') )
+
+    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_feed'), HTML("</div>")),
+    # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_expose'), HTML("</div>"))
 
   ) #end fluid row
+
+
+  #hr(),
+
+
+#7/10/16
+  ), # end tabPanel("UI")
+  # tab "About" ---------------------------
+  tabPanel("About", includeMarkdown("about.md"))
+
+  ) # end navbarPage
+#7/10/16
 
 ))
