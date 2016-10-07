@@ -8,3 +8,4 @@ License: What license is it under?
 LazyData: TRUE
 Imports:
     png
+RoxygenNote: 5.0.1

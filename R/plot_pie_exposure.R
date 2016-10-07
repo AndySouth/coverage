@@ -2,9 +2,9 @@
 #'
 #' plots human exposure based on behaviour inputs
 #'
-#' @param man
-#' @param cow
-#' @param indoor
+#' @param man proportion of indoor mosquitoes feeding on man
+#' @param cow proportion of outdoor mosquitoes feeding on livestock
+#' @param indoor proportion of mosquitoes feeding indoors
 # @param outdoor
 #' @param intervene_indoor proportion coverage of intervention targetting indoor
 #' @param intervene_cow proportion coverage of intervention targetting livestock
