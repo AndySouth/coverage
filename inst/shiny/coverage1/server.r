@@ -23,10 +23,11 @@ shinyServer(function(input, output, session) {
     #  isolate({
 
         plot_feeding( man = input$feed_man,
-                      cow = 1-input$feed_man,
+                      #cow = 1-input$feed_man,
                       indoor = input$feed_in,
-                      outdoor = 1-input$feed_in,
+                      #outdoor = 1-input$feed_in,
                       intervene_indoor = input$intervene_indoor,
+                      intervene_outdoor = input$intervene_outdoor,
                       intervene_cow = input$intervene_cow )
                       #intervention = input$intervention,
                       #coverage = input$target_coverage )
@@ -42,10 +43,11 @@ shinyServer(function(input, output, session) {
   #output$plot_pie_feed <- renderPlot({
 
     plot_pie_feeding( man = input$feed_man,
-                  cow = 1-input$feed_man,
+                  #cow = 1-input$feed_man,
                   indoor = input$feed_in,
-                  outdoor = 1-input$feed_in,
+                  #outdoor = 1-input$feed_in,
                   intervene_indoor = input$intervene_indoor,
+                  intervene_outdoor = input$intervene_outdoor,
                   intervene_cow = input$intervene_cow )
   })
 
@@ -56,10 +58,11 @@ shinyServer(function(input, output, session) {
 
 
     plot_pie_exposure(man = input$feed_man,
-                      cow = 1-input$feed_man,
+                      #cow = 1-input$feed_man,
                       indoor = input$feed_in,
-                      outdoor = 1-input$feed_in,
+                      #outdoor = 1-input$feed_in,
                       intervene_indoor = input$intervene_indoor,
+                      intervene_outdoor = input$intervene_outdoor,
                       intervene_cow = input$intervene_cow )
     #intervention = input$intervention,
     #coverage = input$target_coverage )

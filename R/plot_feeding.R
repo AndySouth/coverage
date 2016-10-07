@@ -12,6 +12,9 @@
 # @param intervention one of 'bed nets', 'vet insecticide'
 # @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
 #'
+#' @examples
+#' plot_feeding(man=0.5, indoor=0.7, intervene_indoor=0.5)
+#'
 #' @return dataframe of some plot coords
 #' @export
 

@@ -5,18 +5,24 @@
 #' @param man
 #' @param cow
 #' @param indoor
-#' @param outdoor
+# @param outdoor
 #' @param intervene_indoor proportion coverage of intervention targetting indoor
 #' @param intervene_cow proportion coverage of intervention targetting livestock
+#' @param intervene_outdoor proportion coverage of intervention targetting outdoor
 # @param intervention one of 'bed nets', 'vet insecticide'
 # @param coverage target coverage of the chosen intervention (i.e. what proportion of it's target does it get)
+#'
+#' @examples
+#' plot_pie_feeding(man=0.5, indoor=0.7, intervene_indoor=0.5)
 #'
 #' @return dataframe of some plot coords
 #' @export
 
-plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
+plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
+                              #outdoor=NULL,
                               #intervention='bed nets', coverage=0.8,
                               intervene_indoor=0.8, intervene_cow=0,
+                              intervene_outdoor=0.2,
                               col=c("deepskyblue", "orange", "yellow") )
   #intman=NULL, intcow=NULL, intindoor=NULL, intoutdoor=NULL )
 {
@@ -26,7 +32,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     man = 0.8
   }
-  if (is.null(indoor) & is.null(outdoor) )
+  if (is.null(indoor)) # & is.null(outdoor) )
   {
     indoor = 0.3
   }
@@ -34,19 +40,23 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
   {
     cow = 1-man
   }
-  if (is.null(outdoor)  )
-  {
-    outdoor = 1-indoor
-  }
+  # if (is.null(outdoor)  )
+  # {
+  #   outdoor = 1-indoor
+  # }
   if (is.null(man)  )
   {
     man = 1-cow
   }
-  if (is.null(indoor)  )
-  {
-    indoor = 1-outdoor
-  }
+  # if (is.null(indoor)  )
+  # {
+  #   indoor = 1-outdoor
+  # }
 
+  # **IMPORTANT**
+  # indoor sets proportion of man bitten inside
+  # therefore outdoor is 1-(man*indoor) not 1-indoor
+  outdoor <- 1-(man*indoor)
 
   #remove blank borders, bltr
   par(mar = c(0,0,1,0),oma = c(0, 0, 0, 0))
@@ -56,13 +66,27 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL, outdoor=NULL,
 
 
   # subtract the interventions from the total before passing to the pie function
-  radius <- 1-((man*indoor*intervene_indoor) + (cow*intervene_cow))
+  #radius <- 1-((man*indoor*intervene_indoor) + (cow*intervene_cow))
+  # 5/10/16 adding intervene_outdoor
+  #radius <- 1-((man*indoor*intervene_indoor) + (cow*intervene_cow) + (man*outdoor*intervene_outdoor))
+
+  feed_man_in <- (indoor*man) - (indoor*man*intervene_indoor)
+  feed_man_out <- (outdoor-cow) - ((outdoor-cow)*intervene_outdoor)
+  feed_cow <- cow - (cow*intervene_cow)
+
+  radius <- feed_man_in + feed_man_out + feed_cow
 
   #to protect against when no exposure, otherwise pie(0) generates error
   pie_plotted <- FALSE
   if (radius > 0)
   {
-    pie(c((1-man)-((1-man)*intervene_cow), man*(1-indoor), (man*indoor)-(man*indoor*intervene_indoor)), col=col, labels=NA, main="", radius=radius, init.angle = 90)
+    #pie(c((1-man)-((1-man)*intervene_cow), man*(1-indoor), (man*indoor)-(man*indoor*intervene_indoor)), col=col, labels=NA, main="", radius=radius, init.angle = 90)
+    # 5/10/16 trying to add intervene_outdoor
+
+    pie(c(feed_cow,
+          feed_man_out,
+          feed_man_in), col=col, labels=NA, main="", radius=radius, init.angle = 90)
+
     pie_plotted <- TRUE
   }
 

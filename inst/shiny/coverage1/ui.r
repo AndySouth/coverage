@@ -14,6 +14,7 @@ shinyUI(fluidPage(
     tags$style(HTML("
 
                     .col-sm-2 {padding: 80px 0px; /*border: 1px solid green;*/}
+                    /*.col-sm-2.4 {width: 20%; float: left;}*/
 
                     /* For mobile phones: */
                     /* note here I'm not following mobile first design ! */
@@ -45,7 +46,7 @@ shinyUI(fluidPage(
 
   title = "coverage of vector control interventions",
 
-  h5("Vector control demonstrator prototype. Gerry Killeen & Andy South."),
+  h5("Vector control demonstrator. Andy South & Gerry Killeen."),
   h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
   h5("Change inputs below to see implications."),
 
@@ -65,25 +66,27 @@ shinyUI(fluidPage(
   #hr(),
 
   fluidRow(
-    column(3,
+    column(2,
            #h4("Vector feeding"),
            sliderInput("feed_man", "vectors feeding on man", 0.7, min = 0, max = 1, step = 0.1, ticks=FALSE)
            #numericInput("feed_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
            #sliderInput("feed_in","indoor", 0.6, min = 0, max = 1, step = 0.1)
            #numericInput("feed_out","outdoor", 0.4, min = 0, max = 1, step = 0.1)
     ),
-    column(3,
+    column(2,
            sliderInput("feed_in","vectors feeding indoors", 0.6, min = 0, max = 1, step = 0.1, ticks=FALSE)
     ),
-    column(3, offset = 0,
+    column(2, offset = 0,
            #h4("Intervention"),
            #radioButtons("intervention","intervention",choices=c("bed nets","vet insecticide"))
            sliderInput("intervene_indoor", "insecticide bed net coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
     ),
-    column(3, offset = 0,
+    column(2, offset = 0,
+           sliderInput("intervene_outdoor", "insecticide emanators", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+    ),
+    column(2, offset = 0,
            sliderInput("intervene_cow", "vet insecticide coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
-
-               )
+    )
            # h4("Intervention target"),
            # numericInput("target_man", "human", 0.7, min = 0, max = 1, step = 0.1),
            # numericInput("target_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
