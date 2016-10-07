@@ -74,7 +74,9 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
   feed_man_out <- (outdoor-cow) - ((outdoor-cow)*intervene_outdoor)
   feed_cow <- cow - (cow*intervene_cow)
 
-  radius <- feed_man_in + feed_man_out + feed_cow
+  feed_proportion <- feed_man_in + feed_man_out + feed_cow
+  #to make pies respond by area rather than radius, better for human perception
+  radius <- sqrt(feed_proportion) #/pi)
 
   #to protect against when no exposure, otherwise pie(0) generates error
   pie_plotted <- FALSE
@@ -95,7 +97,7 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
 
   #add title text
   #mtext("Vector feeding", line=0)
-  mtext(paste("Vector feeding :",round(radius, digits=2)), line=0)
+  mtext(paste("Vector feeding :",round(feed_proportion, digits=2)), line=0)
 
   # OLD CODE
 

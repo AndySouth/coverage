@@ -72,7 +72,10 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL,
   expose_man_out <- (outdoor-cow) - ((outdoor-cow)*intervene_outdoor)
 
   #radius <- man-(man*indoor*intervene_indoor*intervene_outdoor)
-  radius <- expose_man_in + expose_man_out
+  expose_proportion <- expose_man_in + expose_man_out
+
+  #to make pies respond by area rather than radius, better for human perception
+  radius <- sqrt(expose_proportion) #/pi)
 
   #to protect against when no exposure, otherwise pie(0) generates error
   pie_plotted <- FALSE
@@ -89,7 +92,7 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL,
 
 
   #add title text
-  mtext(paste("Human exposure :",round(radius, digits=2)), line=0)
+  mtext(paste("Human exposure :",round(expose_proportion, digits=2)), line=0)
 
 
   # OLD CODE
