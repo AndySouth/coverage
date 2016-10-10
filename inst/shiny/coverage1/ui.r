@@ -13,7 +13,7 @@ shinyUI(fluidPage(
   tags$head(
     tags$style(HTML("
 
-                    .col-sm-2 {padding: 80px 0px; /*border: 1px solid green;*/}
+                    ! .col-sm-2 {padding: 80px 0px; /*border: 1px solid green;*/}
                     /*.col-sm-2.4 {width: 20%; float: left;}*/
 
                     /* For mobile phones: */
@@ -54,30 +54,35 @@ shinyUI(fluidPage(
   #7/10/16
 
   #h5("Vector control demonstrator. Andy South & Gerry Killeen."),
-  h5("Vectors feed indoors and outdoors, on humans and cattle. Interventions target a subset of these behaviours."),
-  h5("Change inputs below to see implications. Andy South & Gerry Killeen."),
+  h5("Interventions target a subset of vectors which feed indoors and outdoors, on humans and cattle. Modify inputs to see the implications."),
+
+  fluidRow(
+    column(4, h4("Vector feeding : ")),
+    column(6, h4("Intervention coverage : "))
+  ), #end fluid row
 
   fluidRow(
     column(2,
-           #h4("Vector feeding"),
-           sliderInput("feed_man", "vectors feeding on man", 0.7, min = 0, max = 1, step = 0.1, ticks=FALSE)
-           #numericInput("feed_cow", "cattle", 0.3, min = 0, max = 1, step = 0.1),
-           #sliderInput("feed_in","indoor", 0.6, min = 0, max = 1, step = 0.1)
-           #numericInput("feed_out","outdoor", 0.4, min = 0, max = 1, step = 0.1)
+           sliderInput("feed_man", NULL, 0.7, min = 0, max = 1, step = 0.1, ticks=FALSE),
+           h5("on humans")
     ),
     column(2,
-           sliderInput("feed_in","vectors feeding indoors", 0.6, min = 0, max = 1, step = 0.1, ticks=FALSE)
+           sliderInput("feed_in",NULL, 0.6, min = 0, max = 1, step = 0.1, ticks=FALSE),
+           h5("indoors (of human feeders)")
+
     ),
     column(2, offset = 0,
-           #h4("Intervention"),
-           #radioButtons("intervention","intervention",choices=c("bed nets","vet insecticide"))
-           sliderInput("intervene_indoor", "insecticide bed net coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+           sliderInput("intervene_indoor", NULL, 0, min = 0, max = 1, step = 0.1, ticks=FALSE),
+           h5("insecticidal bed net")
+
     ),
     column(2, offset = 0,
-           sliderInput("intervene_outdoor", "insecticide emanator coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+           sliderInput("intervene_outdoor", NULL, 0, min = 0, max = 1, step = 0.1, ticks=FALSE),
+           h5("outdoor vapour insecticide emanator")
     ),
     column(2, offset = 0,
-           sliderInput("intervene_cow", "vet insecticide coverage", 0, min = 0, max = 1, step = 0.1, ticks=FALSE)
+           sliderInput("intervene_cow", NULL, 0, min = 0, max = 1, step = 0.1, ticks=FALSE),
+           h5("veterinary insecticide")
     )
     # h4("Intervention target"),
     # numericInput("target_man", "human", 0.7, min = 0, max = 1, step = 0.1),
@@ -89,10 +94,10 @@ shinyUI(fluidPage(
 
   fluidRow(
     column(8, plotOutput('plot_feed')),
-    # column(2, h5("Vector feeding"), plotOutput('plot_pie_feed') ),
-    # column(2, h5("Human exposure"), plotOutput('plot_pie_expose') )
-    column(2, plotOutput('plot_pie_feed') ),
-    column(2, plotOutput('plot_pie_expose') )
+    column(2, hr(), h5("Vector blood sources"), plotOutput('plot_pie_feed') ),
+    column(2, hr(), h5("Human exposure"), plotOutput('plot_pie_expose') )
+    #column(2, plotOutput('plot_pie_feed') ),
+    #column(2, plotOutput('plot_pie_expose') )
 
     # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_feed'), HTML("</div>")),
     # column(2, HTML("<div style='height: 150px;'>"), plotOutput('plot_pie_expose'), HTML("</div>"))

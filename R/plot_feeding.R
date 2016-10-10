@@ -93,16 +93,25 @@ plot_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
   #add images to label axes
 
   img_cow <- png::readPNG(system.file("extdata", 'cow_thumb.png', package = "coverage"))
-  rasterImage(img_cow, xleft=-0.25, ybottom=cow/2-0.05, xright=-0.15, ytop=cow/2+0.05, interpolate = FALSE)
+  ybottom <- cow/2-0.05
+  rasterImage(img_cow, xleft=-0.25, ybottom=ybottom, xright=-0.15, ytop=cow/2+0.05, interpolate = FALSE)
+  text(-0.25+0.01, adj=0, ybottom-0.05, "cattle")
 
   img_man <- png::readPNG(system.file("extdata", 'man_thumb.png', package = "coverage"))
-  rasterImage(img_man, xleft=-0.25, ybottom=cow + man/2-0.05, xright=-0.15, ytop=cow + man/2+0.05, interpolate = FALSE)
+  ybottom <- cow + man/2-0.05
+  rasterImage(img_man, xleft=-0.25, ybottom=ybottom, xright=-0.15, ytop=cow + man/2+0.05, interpolate = FALSE)
+  text(-0.25+0.01, adj=0, ybottom-0.05, "humans")
 
   img_indoor <- png::readPNG(system.file("extdata", 'indoor.png', package = "coverage"))
-  rasterImage(img_indoor, xleft=1.1, ybottom=cow + (man*(1-indoor))+(man*indoor)/2-0.1, xright=1.3, ytop=cow+(man*(1-indoor))+(man*indoor)/2+0.1, interpolate = FALSE)
+  ybottom <- cow + (man*(1-indoor))+(man*indoor)/2-0.1
+  rasterImage(img_indoor, xleft=1.1, ybottom=ybottom, xright=1.3, ytop=cow+(man*(1-indoor))+(man*indoor)/2+0.1, interpolate = FALSE)
+  text(1.1+0.1, ybottom, "indoors")
+
 
   img_outdoor <- png::readPNG(system.file("extdata", 'outdoor.png', package = "coverage"))
-  rasterImage(img_outdoor, xleft=1.1, ybottom=outdoor/2-0.1, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
+  ybottom <- outdoor/2-0.1
+  rasterImage(img_outdoor, xleft=1.1, ybottom=ybottom, xright=1.3, outdoor/2+0.1, interpolate = FALSE)
+  text(1.1+0.1, ybottom, "outdoors")
 
   # axes after images to overwrite any whitespace
   # tcl=tickmark length, +ve =towards plot

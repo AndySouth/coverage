@@ -1,23 +1,29 @@
-A simple interactive graphical model to demonstrate how different interventions can be combined to target mosquito vectors exhibiting different behaviours. 
-
-Developed by Andy South and Gerry Killeen in 2016.  
+A simple interactive graphical model to demonstrate how different interventions can be combined to target mosquito vectors exhibiting different behaviours, the distribution of which can change in response to those interventions.
 
 * Select 'UI' to use. 
 * Modify inputs using the sliders.
-* The coloured square indicates proportions of vectors feeding on humans and livestock, and of those feeding on humans the proportion doing so indoors versus outdoors.
-* The vector feeding pie chart shows the proportion of vectors remaining after interventions and what they are feeding on.
-* The human exposure pie chart shows the proportion of the total potential vectors that reamin feeding on humans after the interventions.
-* The first two sliders allow you to modify the proportions of vectors feeding on livestock and humans indoors and outdoors.
+* The coloured rectangle indicates proportions of vectors feeding on humans and livestock, and proportion doing so indoors versus outdoors when they attack humans. All attacks upon livestock are assumed to occur outdoors.
+* The vector feeding pie chart illustrates the proportion of vector feeding opportunities remaining available before and after scaling up these intervention options.
+* The human exposure pie chart shows the proportional distribution of human exposure to biting vectors which occurs indoors and outdoors before and after scaling up these intervention options.
+* The first two sliders allow you to modify the proportions of vectors feeding on livestock versus humans and, indoors versus outdoors when they do feed upon humans.
+* The later sliders allow you to modify the coverage of different interventions.
 
 
-This is an exceedingly simple model based on arithmetic and not directly derived from data. It is based on simple proportions and that interventions target vectors exhibiting different behaviour. In this implementation one intervention (nets) is assumed to target vectors feeding indoors on humans, another (emanators) targets only vectors feeding outdoors on humans and a third (vet insecticides) targets only vectors feeding on livestock.
+This is a very simple model based on arithmetic and not directly derived from data (Kiware et al. 2012, Killeen et al. 2014). It is based on simple proportions and that interventions target vectors exhibiting different behaviour. In this implementation one intervention (bed nets) is assumed to only target vectors feeding indoors on humans, while another (insecticide vapour emanators) targets only vectors feeding outdoors upon humans, while another (veterinary insecticides) targets only vectors feeding outdoors upon livestock.
 
-Of course, in the field the situation will be more complex with vectors being more plastic in their behaviour and interventions targetting more than one of these groups. Nevertheless, the model demonstrates the broad implications of one hypothesis and allows the user to investigate. The model could easily be modified to address alternative hypotheses.
+Of course, real field settings will be more complex with vectors being able to evolve altered behavioural preferences, interventions targeting more than one of these blood sources , and there being more than one vector present. Nevertheless, the model demonstrates the broad principles of how interventions can be rationally targeted to well-matched mosquito behaviours, and can create new opportunities for complementary interventions, allowing users to investigate and explore for themselves. This simple model can easily be modified to address alternative baseline assumptions, and expanded to consider more complex vector systems.
 
 The research behind this model is described in an accompanying submitted paper.
 
 The code is hosted here : https://github.com/AndySouth/coverage
 
-Comments welcome.
+Andy South, Gerry F Killeen, John M. Marshall, Samson S. Kiware1, Prosper P. Chaki1 and Nicodem J. Govella1
 
-southandy at gmail.com
+
+### References
+
+Killeen GF, Kiware SS, Seyoum A, et al. Comparative assessment of diverse strategies for malaria vector population control based on measured rates at which mosquitoes utilize targeted resource subsets. Malar J 2014;13:338.
+
+Kiware SS, Chitnis N, Devine GJ, et al. Biologically meaningful coverage indicators for eliminating malaria transmission. Biol Lett 2012;8:874-77.
+
+

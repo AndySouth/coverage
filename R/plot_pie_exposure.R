@@ -92,8 +92,8 @@ plot_pie_exposure <- function( man=NULL, cow=NULL, indoor=NULL,
 
 
   #add title text
-  mtext(paste("Human exposure :",round(expose_proportion, digits=2)), line=0)
-
+  #mtext(paste("Human exposure:",round(expose_proportion, digits=2)), line=0)
+  mtext(round(expose_proportion, digits=2), line=0)
 
   # OLD CODE
 

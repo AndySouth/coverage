@@ -97,7 +97,8 @@ plot_pie_feeding <- function( man=NULL, cow=NULL, indoor=NULL,
 
   #add title text
   #mtext("Vector feeding", line=0)
-  mtext(paste("Vector feeding :",round(feed_proportion, digits=2)), line=0)
+  #mtext(paste("Vector blood sources:",round(feed_proportion, digits=2)), line=0)
+  mtext(round(feed_proportion, digits=2), line=0)
 
   # OLD CODE
 
