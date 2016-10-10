@@ -19,6 +19,7 @@ The code is hosted here : https://github.com/AndySouth/coverage
 
 Andy South, Gerry F Killeen, John M. Marshall, Samson S. Kiware1, Prosper P. Chaki1 and Nicodem J. Govella1
 
+Human & Cow Icons from phylopic.org
 
 ### References
 
