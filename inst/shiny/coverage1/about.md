@@ -17,13 +17,13 @@ The research behind this model is described in an accompanying submitted paper.
 
 The code is hosted here : https://github.com/AndySouth/coverage
 
-Andy South, Gerry F Killeen, John M. Marshall, Samson S. Kiware1, Prosper P. Chaki1 and Nicodem J. Govella1
+Andy South, Gerry F. Killeen, John M. Marshall, Samson S. Kiware, Prosper P. Chaki, Nicodem J. Govella and Lucy S. Tusting
 
 Human & Cow Icons from phylopic.org
 
-### References
+#### References
 
-Killeen GF, Kiware SS, Seyoum A, et al. Comparative assessment of diverse strategies for malaria vector population control based on measured rates at which mosquitoes utilize targeted resource subsets. Malar J 2014;13:338.
+Killeen GF. Characterizing, controlling and eliminating residual malaria transmission. Malar J 2014;13:330.
 
 Kiware SS, Chitnis N, Devine GJ, et al. Biologically meaningful coverage indicators for eliminating malaria transmission. Biol Lett 2012;8:874-77.
 
