@@ -2,8 +2,8 @@ name: coverage1
 account: andysouth
 server: shinyapps.io
 appId: 101895
-bundleId: 579637
+bundleId: 582194
 url: https://andysouth.shinyapps.io/coverage1/
-when: 1475854160.44746
+when: 1476105421.92774
 asMultiple: FALSE
 asStatic: FALSE

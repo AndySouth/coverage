@@ -3,6 +3,7 @@
 #' displays a user interface in the browser, allowing users to modify inputs
 
 #' @return nothing
+#' @import shiny markdown
 #' @export
 
 runUI1 <- function() {
